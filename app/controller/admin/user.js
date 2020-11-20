@@ -42,7 +42,7 @@ class UserController extends Controller {
           title: '用户',
           fixed: 'left',
           render(item) {
-            let avatar = item.avatar || '/public/assets/img/profiles/avatar-01.jpg'
+            let avatar = item.dataValues.avatar || '/public/assets/img/profiles/avatar-01.jpg'
             return `
                     <h2 class="table-avatar">
                         <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle bg-light" src="${avatar}"></a>
@@ -151,6 +151,8 @@ class UserController extends Controller {
 
     data = JSON.parse(JSON.stringify(data))
     delete data.password
+
+    data.avatar = data.avatar.replace('undefined', '')
 
     await ctx.renderTemplate({
       id: ctx.params.id,

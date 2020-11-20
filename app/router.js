@@ -38,4 +38,15 @@ module.exports = app => {
 
   // 文件上传（流）
   router.post('/admin/upload', controller.admin.common.upload);
+
+  // 订单相关
+  router.get('/admin/order', controller.admin.order.index);
+  router.get('/admin/order/delete/:id', controller.admin.order.delete);
+
+  // live
+  router.get('/admin/live', controller.admin.live.index);
+  router.get('/admin/live/look/:id', controller.admin.live.look);
+  router.get('/admin/live/gift/:id', controller.admin.live.gift);
+  router.get('/admin/live/comment/:id', controller.admin.live.comment);
+  router.get('/admin/live/close/:id', controller.admin.live.closelive);
 };

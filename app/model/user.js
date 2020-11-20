@@ -51,10 +51,10 @@ module.exports = app => {
     updated_time: DATE,
   });
 
-  // User.associate = function (models) {
-  //   // 关联视频
-  //   User.hasMany(app.model.Live);
-  // }
+  User.associate = function (models) {
+    // 关联视频
+    User.hasMany(app.model.Live);
+  }
 
   return User;
 };

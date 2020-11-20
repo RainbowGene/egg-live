@@ -37,9 +37,9 @@ class GiftController extends Controller {
           fixed: 'left',
           render(item) {
             return `
-                        <h2 class="table-avatar">
-                            <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle bg-light" src="${item.image}"></a>
-                        </h2>`
+              <h2 class="table-avatar">
+                  <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle bg-light" src="${item.dataValues.image}" /></a>
+              </h2>`
           },
         }, {
           title: '礼物名称',
@@ -129,6 +129,9 @@ class GiftController extends Controller {
 
     data = JSON.parse(JSON.stringify(data))
 
+    // 对图片地址中的undefined过滤
+    data.image = data.image.replace('undefined', '')
+
     await ctx.renderTemplate({
       id: ctx.params.id,
       title: "修改礼物",
@@ -192,3 +195,8 @@ class GiftController extends Controller {
 }
 
 module.exports = GiftController;
+
+
+let data = 'undefined/public/uploads/2020/11/20/1605832150393911.png'
+data = data.replace('undefined', '')
+console.log(data);
