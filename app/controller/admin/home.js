@@ -53,25 +53,12 @@ class HomeController extends Controller {
       ctx.throw(400, '用户不存在或已被禁用');
     }
     // 验证密码
-    await this.checkPassword(password, manager.password);
+    await ctx.checkPassword(password, manager.password);
 
     // 记录到session中
     ctx.session.auth = manager
 
     return ctx.apiSuccess('ok');
-  }
-
-  // 验证密码
-  async checkPassword(password, hash_password) {
-    // 先对需要验证的密码进行加密
-    const hmac = crypto.createHash("sha256", this.app.config.crypto.secret);
-    hmac.update(password);
-    password = hmac.digest("hex");
-    let res = password === hash_password;
-    if (!res) {
-      this.ctx.throw(400, '密码错误');
-    }
-    return true;
   }
 
   async logout() {

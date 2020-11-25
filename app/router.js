@@ -4,7 +4,13 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-  const { router, controller } = app;
+  const { router, controller, io } = app;
+
+  // 注册/登录/退出登录/获取当前用户信息
+  router.post('/api/reg', controller.api.user.reg);
+  router.post('/api/login', controller.api.user.login);
+  router.post('/api/logout', controller.api.user.logout);
+  router.get('/api/user/info', controller.api.user.info);
 
   // 后台相关
   router.get('/admin', controller.admin.home.index);
@@ -17,7 +23,7 @@ module.exports = app => {
   router.get('/admin/manager/create', controller.admin.manager.create);
   router.post('/admin/manager', controller.admin.manager.save);
   router.get('/admin/manager/edit/:id', controller.admin.manager.edit);
-  router.get('/admin/manager/delete/:id', controller.admin.manager.delete)
+  router.get('/admin/manager/delete/:id', controller.admin.manager.delete);
   router.post('/admin/manager/:id', controller.admin.manager.update);
 
   // 用户相关
@@ -49,4 +55,26 @@ module.exports = app => {
   router.get('/admin/live/gift/:id', controller.admin.live.gift);
   router.get('/admin/live/comment/:id', controller.admin.live.comment);
   router.get('/admin/live/close/:id', controller.admin.live.closelive);
+
+  // 用户：直播间创建
+  router.post('/api/live/create', controller.api.live.save);
+  // 修改直播间状态
+  router.post('/api/live/changestatus', controller.api.live.changestatus);
+  // 直播间列表
+  router.get('/api/live/list/:page', controller.api.live.list);
+  // 查看直播间
+  router.get('/api/live/read/:id', controller.api.live.read);
+
+  // 用户礼物列表
+  router.get('/api/gift/list', controller.api.gift.list);
+
+  // 微信支付
+  router.post('/api/gift/wxpay', controller.api.gift.wxpay);
+  router.post('/api/gift/notify', controller.api.gift.notify);
+
+  // io 测试接口
+  // io.of('/').route('test',io.controller.nsp.test);
+
+  // io 接口
+  io.of('/').route('joinLive', io.controller.nsp.joinLive);
 };

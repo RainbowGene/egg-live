@@ -195,8 +195,3 @@ class GiftController extends Controller {
 }
 
 module.exports = GiftController;
-
-
-let data = 'undefined/public/uploads/2020/11/20/1605832150393911.png'
-data = data.replace('undefined', '')
-console.log(data);

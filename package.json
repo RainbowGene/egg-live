@@ -12,11 +12,17 @@
     "dayjs": "^1.9.6",
     "egg": "^2.15.1",
     "egg-cors": "^2.2.3",
+    "egg-jwt": "^3.1.7",
+    "egg-redis": "^2.4.0",
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^6.0.0",
+    "egg-socket.io": "^4.1.6",
+    "egg-tenpay": "^1.0.1",
     "egg-valparams": "^1.4.3",
     "egg-view-nunjucks": "^2.2.0",
+    "md5": "^2.3.0",
     "mysql2": "^2.2.5",
+    "node-media-server": "^2.2.4",
     "stream-wormhole": "^1.1.0"
   },
   "devDependencies": {
@@ -33,9 +39,9 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-live-server",
+    "start": "egg-scripts start --sticky --daemon --title=egg-server-live-server",
     "stop": "egg-scripts stop --title=egg-server-live-server",
-    "dev": "egg-bin dev",
+    "dev": "egg-bin dev --sticky",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
