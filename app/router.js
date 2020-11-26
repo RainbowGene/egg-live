@@ -76,5 +76,12 @@ module.exports = app => {
   // io.of('/').route('test',io.controller.nsp.test);
 
   // io 接口
+  // 加入/离开直播间/弹幕发送/礼物发送
   io.of('/').route('joinLive', io.controller.nsp.joinLive);
+  io.of('/').route('leaveLive', io.controller.nsp.leaveLive);
+  io.of('/').route('comment', io.controller.nsp.comment);
+  io.of('/').route('gift', io.controller.nsp.gift);
+
+  // 上传图片
+  router.post('/api/upload', controller.api.common.upload);
 };

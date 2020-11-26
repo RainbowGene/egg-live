@@ -46,7 +46,8 @@ module.exports = appInfo => {
       '/api/live/create',
       '/api/live/changestatus',
       '/api/gift/wxpay',
-      '/api/user/info'
+      '/api/user/info',
+      '/api/upload'
     ]
   };
 
@@ -182,7 +183,7 @@ module.exports = appInfo => {
   };
 
   // 微信支付
-  config.webUrl = 'http://127.0.0.1:7001'
+  config.webUrl = 'http://192.168.42.229:7001'
   // 微信支付配置(营业执照)
   config.tenpay = {
     client: {
